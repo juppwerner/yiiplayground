@@ -14,7 +14,8 @@
 		"php": ">=5.4.0",
 		"yiisoft/yii2": "*",
 		"yiisoft/yii2-bootstrap": "*",
-		"giovdk21/yii2-syntaxhighlighter": "dev-master"
+		"giovdk21/yii2-syntaxhighlighter": "dev-master",
+		"nirvana-msu/yii2-infinite-scroll": "1.0.*@dev"
 	},
 	"require-dev": {
 		"yiisoft/yii2-codeception": "*",
@@ -32,7 +33,11 @@
 		]
 	},
 	"config": {
-		"process-timeout": 1800
+		"process-timeout": 1800,
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }		
 	},
 	"extra": {
 		"yii\\composer\\Installer::postCreateProject": {

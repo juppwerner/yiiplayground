@@ -38,6 +38,12 @@ class BaseController extends Controller
                 ['label' => 'ListView Widget', 'url' => ['data-widgets/list-view']],
             ],
         ], 
+        [
+            'label' => 'Extensions',
+            'items' => [
+                ['label' => 'ListView Infinite Scroll', 'url' => ['extensions/list-view-infinite-scroll']],
+            ],
+        ], 
     ];
 
 } 
