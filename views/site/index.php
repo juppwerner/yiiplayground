@@ -28,7 +28,8 @@ $this->title = 'Yii Playground';
 				// ...in one move!
 				echo "<ol>";
 				echo "<li>Write your code</li>";
-				echo "<li>Show your code</li>";
+                echo "<li>Show your code</li>";
+                echo "<li>Add a menu entry in <code>app/components/BaseController.php</code></li>";
 				echo "</ol>";
 
 				Yii::$app->sc->collect('php', Yii::$app->sc->getSourceToLine(__LINE__, __FILE__));

@@ -28,10 +28,16 @@ class BaseController extends Controller
                 ['label' => 'Html', 'url' => ['helpers/html']],
             ]
         ],
-				[
-					'label' => 'Ajax request',
-					'url' => ['ajax/index']
-				],
+        [
+            'label' => 'Ajax request',
+            'url' => ['ajax/index']
+        ],
+        [
+            'label' => 'Data Widgets',
+            'items' => [
+                ['label' => 'ListView Widget', 'url' => ['data-widgets/list-view']],
+            ],
+        ], 
     ];
 
 } 
