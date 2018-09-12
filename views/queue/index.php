@@ -34,6 +34,11 @@ $this->params['guideUrl'] = 'https://github.com/yiisoft/yii2-queue';
         ), false, false
     ); ?>
     <?php Yii::$app->sc->collect('php', Yii::$app->sc->getSnippetFromFile(
+        '// Mailer component:', '// end mailer', 
+        Yii::getAlias('@app/config/console.php'), 8
+        ), false, false
+    ); ?>
+    <?php Yii::$app->sc->collect('php', Yii::$app->sc->getSnippetFromFile(
         '// Krajee Pdf component:', '// end pdf', 
         Yii::getAlias('@app/config/console.php'), 8
         ), false, false
@@ -52,6 +57,17 @@ $this->params['guideUrl'] = 'https://github.com/yiisoft/yii2-queue';
     ); ?>
     <?php Yii::$app->sc->collect('php', Yii::$app->sc->getFunctionFromFile(
             '    public function actionPush',
+            Yii::getAlias('@app/controllers/QueueController.php')
+        ), false, false
+    ); ?>
+
+    <h2>Job Definition and Execution of One and Next Job</h2>
+    <?php Yii::$app->sc->collect('php', Yii::$app->sc->getSourceFromFile(
+            Yii::getAlias('@app/components/SendFileAsEmailJob.php')
+        ), false, false
+    ); ?>
+    <?php Yii::$app->sc->collect('php', Yii::$app->sc->getFunctionFromFile(
+            '    public function actionPushWithNext',
             Yii::getAlias('@app/controllers/QueueController.php')
         ), false, false
     ); ?>
