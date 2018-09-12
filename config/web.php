@@ -6,7 +6,10 @@ $db = require(__DIR__ . '/db.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log', 'queue'],
+    'aliases' => [
+        '@data' => dirname(__FILE__).'/../data',
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -32,6 +35,12 @@ $config = [
             ],
         ],
         'db' => $db,
+        'queue' => [
+            'class' => \yii\queue\file\Queue::class,
+            'as log' => \yii\queue\LogBehavior::class,
+            // Other driver options
+            'path' => '@runtime/queue',
+        ],
         'sc' => [
             'class' => 'app\components\SrcCollect',
         ],

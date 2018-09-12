@@ -16,3 +16,5 @@ DEBUG
 
 # database
 protected/data/user.db
+
+data/*.pdf

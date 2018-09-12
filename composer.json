@@ -15,7 +15,9 @@
 		"yiisoft/yii2": "*",
 		"yiisoft/yii2-bootstrap": "*",
 		"giovdk21/yii2-syntaxhighlighter": "dev-master",
-		"nirvana-msu/yii2-infinite-scroll": "1.0.*@dev"
+		"nirvana-msu/yii2-infinite-scroll": "1.0.*@dev",
+		"yiisoft/yii2-queue": "^2.1",
+		"kartik-v/yii2-mpdf": "dev-master"
 	},
 	"require-dev": {
 		"yiisoft/yii2-codeception": "*",

@@ -42,6 +42,7 @@ class BaseController extends Controller
             'label' => 'Extensions',
             'items' => [
                 ['label' => 'ListView Infinite Scroll', 'url' => ['extensions/list-view-infinite-scroll']],
+                ['label' => 'Queue', 'url' => ['queue/index']],
             ],
         ], 
     ];
