@@ -27,6 +27,14 @@ return [
             ],
         ],
         'db' => $db,
+        // Mailer component:
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure a transport
+            // for the mailer to send real emails.
+            'useFileTransport' => true,
+        ], // end mailer        
         // Krajee Pdf component:
         'pdf' => [
             'class' => \kartik\mpdf\Pdf::classname(),

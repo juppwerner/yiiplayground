@@ -18,6 +18,7 @@ $this->params['guideUrl'] = 'https://github.com/yiisoft/yii2-queue';
             <ul>
             <li><?= Html::a('Push CreatePdfJob', ['push']) ?></li>
             <li><?= Html::a('Push Delayed CreatePdfJob', ['push-delayed']) ?></li>
+            <li><?= Html::a('Push CreatePdfJob, followed by SendFileAsEmailJob', ['push-with-next']) ?></li>
             <?php if(isset($_GET['lastJobId'])) : ?>
             <?php $lastJobId = $_GET['lastJobId']; ?>
             <li><?= Html::a('Check Job:  #'.$lastJobId, ['check', 'lastJobId'=>$lastJobId]) ?></li>

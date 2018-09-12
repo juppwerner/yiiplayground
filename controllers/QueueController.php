@@ -33,6 +33,23 @@ class QueueController extends BaseController
         $this->redirect(['index', 'lastJobId'=>$result]);
     }
 
+    public function actionPushWithNext() 
+    {
+        $result = Yii::$app->queue->push(new CreatePdfJob([
+            'file' => date('Y-m-d_His').'.pdf',
+            'nextJob' => [
+                '__class__'=>'\app\components\SendFileAsEmailJob',
+                '__delay__'=>0.1 * 60,
+                'from' => 'joachim.werner@diggin-data.de',
+                'to' => 'joachim.werner@diggin-data.de',
+                'subject' => 'New PDF Report created',
+                'textBody' => "A new PDF Report was created.",
+            ]
+        ]));
+        Yii::$app->session->addFlash('success', 'New job CreatePdfJob pushed to queue'.'<br>Job ID: '.\yii\helpers\VarDumper::dumpAsString($result, 10, true));
+        $this->redirect(['index', 'lastJobId'=>$result]);
+    }
+
     public function actionCheck($lastJobId) {
         return $this->render('check', ['lastJobId'=>$lastJobId]);
     }
