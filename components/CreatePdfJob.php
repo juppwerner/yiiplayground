@@ -32,8 +32,11 @@ class CreatePdfJob extends BaseObject implements \yii\queue\JobInterface
             }
             foreach($this->nextJob as $k=>$v)
                 $cfg[$k] = $v;
+            
+            // Add attachment?
             if($cfg['class']=='\app\components\SendFileAsEmailJob')
                 $cfg['attachment'] = $path;
+
             $object = Yii::createObject($cfg);
             // Create new job to send file as email attachment
             $result = Yii::$app->queue->delay($delay)->push($object);
