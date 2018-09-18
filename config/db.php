@@ -2,8 +2,6 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2basic',
-    'username' => 'root',
-    'password' => '',
+    'dsn' => 'sqlite:'.str_replace("\\", '/', __DIR__.'/../data/user.db'),
     'charset' => 'utf8',
 ];

@@ -3,9 +3,11 @@ namespace app\components;
 
 use Yii;
 use yii\base\BaseObject;
-use kartik\mpdf\Pdf;
 
-class SendFileAsEmailJob extends BaseObject implements \yii\queue\JobInterface
+/**
+ * @author Joachim Werner <joachim.werner@diggin-data.de> 
+ */
+class SendFileAsEmailJob extends BaseJob implements \yii\queue\JobInterface
 {
     public $from;
     public $to;
@@ -24,12 +26,15 @@ class SendFileAsEmailJob extends BaseObject implements \yii\queue\JobInterface
             $message->setTextBody($this->textBody);
         if(!is_null($this->htmlBody))
             $message->setHtmlBody($this->htmlBody);
-        // attach file from local file system
-        if(!is_null($this->attachment)) {
-            if(is_file($this->attachment))
-                $message->attach($this->attachment);        
+        // attach files from local file system
+        if(is_array($this->attachmentPaths)) {
+            foreach($this->attachmentPaths as $attachment) {
+                if(is_file($attachment))
+                    $message->attach($attachment);        
+            }
         }
         $message->send();    
+
     }
 
 }

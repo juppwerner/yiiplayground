@@ -39,7 +39,7 @@ class QueueController extends BaseController
             'file' => date('Y-m-d_His').'.pdf',
             'nextJob' => [
                 '__class__'=>'\app\components\SendFileAsEmailJob',
-                '__delay__'=>0.1 * 60,
+                // '__delay__'=>0.1 * 60,
                 'from' => 'joachim.werner@diggin-data.de',
                 'to' => 'joachim.werner@diggin-data.de',
                 'subject' => 'New PDF Report created',

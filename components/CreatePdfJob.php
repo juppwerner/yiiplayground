@@ -5,11 +5,12 @@ use Yii;
 use yii\base\BaseObject;
 use kartik\mpdf\Pdf;
 
-class CreatePdfJob extends BaseObject implements \yii\queue\JobInterface
+/**
+ * @author Joachim Werner <joachim.werner@diggin-data.de> 
+ */
+class CreatePdfJob extends BaseJob implements \yii\queue\JobInterface
 {
-    public $data;
     public $file;
-    public $nextJob;
     
     public function execute($queue)
     {
@@ -20,28 +21,12 @@ class CreatePdfJob extends BaseObject implements \yii\queue\JobInterface
         $path = Yii::getAlias('@data').'/'.$this->file;
         $mpdf->Output($path, \Mpdf\Output\Destination::FILE); // call the mpdf api output as needed
 
-        if(is_array($this->nextJob)) {
-            $delay = 0;
-            $cfg = ['class' => $this->nextJob['__class__']];
-            unset($this->nextJob['__class__']);
-
-            // Was a delay specified?
-            if(isset($this->nextJob['__delay__'])) {
-                $delay = $this->nextJob['__delay__'];
-                unset($this->nextJob['__delay__']);
+        if(!is_null($this->nextJob)) {
+            if($this->nextJob['__class__']=='\app\components\SendFileAsEmailJob') {
+                $this->nextJob['attachmentPaths'] = [ $path ];
             }
-            foreach($this->nextJob as $k=>$v)
-                $cfg[$k] = $v;
-            
-            // Add attachment?
-            if($cfg['class']=='\app\components\SendFileAsEmailJob')
-                $cfg['attachment'] = $path;
-
-            $object = Yii::createObject($cfg);
-            // Create new job to send file as email attachment
-            $result = Yii::$app->queue->delay($delay)->push($object);
         }
-
+        $this->runNextJob();
     }
 
 }

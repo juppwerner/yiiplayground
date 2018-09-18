@@ -6,7 +6,7 @@ $db = require(__DIR__ . '/db.php');
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'queue'],
+    'bootstrap' => ['log', 'queue', 'monitor'],
     'aliases' => [
         '@data' => dirname(__FILE__).'/../data',
     ],
@@ -40,9 +40,29 @@ $config = [
             'as log' => \yii\queue\LogBehavior::class,
             // Other driver options
             'path' => '@runtime/queue',
+            // for Queue Monitor:
+            'as jobMonitor' => \zhuravljov\yii\queue\monitor\JobMonitor::class,
+            'as workerMonitor' => \zhuravljov\yii\queue\monitor\WorkerMonitor::class,            
         ],
         'sc' => [
             'class' => 'app\components\SrcCollect',
+        ],
+    ],
+    // for Queue Monitor:
+    'container' => [
+        'singletons' => [
+            \zhuravljov\yii\queue\monitor\Env::class => [
+                'cache' => 'cache',
+                'db' => 'db',
+                'pushTableName'   => '{{%queue_push}}',
+                'execTableName'   => '{{%queue_exec}}',
+                'workerTableName' => '{{%queue_worker}}',
+            ],
+        ],
+    ],    
+    'modules' => [
+        'monitor' => [
+            'class' => \zhuravljov\yii\queue\monitor\Module::class,
         ],
     ],
     'params' => $params,

@@ -51,6 +51,14 @@ return [
             'path' => '@runtime/queue',
         ], // end queue
     ],
+    'controllerMap' => [
+        'migrate' => [
+            'class' => \yii\console\controllers\MigrateController::class,
+            'migrationNamespaces' => [
+                'zhuravljov\yii\queue\monitor\migrations',
+            ],
+        ],
+    ],    
     'modules' => [
         'gii' => 'yii\gii\Module',
     ],

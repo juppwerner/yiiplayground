@@ -18,7 +18,8 @@
 		"nirvana-msu/yii2-infinite-scroll": "1.0.*@dev",
 		"yiisoft/yii2-queue": "^2.1",
 		"kartik-v/yii2-mpdf": "dev-master",
-        "yiisoft/yii2-swiftmailer": "~2.0.0"
+        "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "zhuravljov/yii2-queue-monitor": "1.x-dev"
 	},
 	"require-dev": {
 		"yiisoft/yii2-codeception": "*",
